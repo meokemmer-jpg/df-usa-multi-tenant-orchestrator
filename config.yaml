@@ -18,6 +18,26 @@ description: |
   Multi-Tenant-Boundary fuer DE+USA-Hotels mit DSGVO (EU) + CCPA (California) Compliance.
   Tenant-Context per Country + Hotel-ID. Foundation fuer USA-Markt-Expansion.
 
+# === Default-Action (per ausreden-schutz.md Schicht 2, Welle-47 Migration Batch-2) ===
+default_action:
+  description: "USA+DE Multi-Tenant-Orchestration mit dual-jurisdiction Compliance (DSGVO+CCPA), Country-Code Routing, Government-Records Anker-Validation pro Tenant"
+  rho_per_run_eur: 60
+  rho_validation_source: unvalidated
+  block_gates:
+    - gate_id: K11
+      block_reason: "Cascade-Containment: isolated_dlq_per_tenant Pflicht (USA-Hotels duerfen nicht in DE-DLQ schreiben)"
+      false_block_cost_eur: 50
+      legitimate_block_condition: "Cross-Jurisdiction-Tenant-Leak detected"
+    - gate_id: K13_PAV
+      block_reason: "Pre-Action-Verification: jurisdiction (DE/CA) + env_tag + blast_radius Pflicht, sandbox_default=true"
+      false_block_cost_eur: 40
+      legitimate_block_condition: "k0_q0_touch=true ohne PHRONESIS_TICKET (Hotel-Expansion-Decisions)"
+    - gate_id: K14
+      block_reason: "Phronesis-Required (USA-Markt-Expansion = K_0+Q_0)"
+      false_block_cost_eur: 80
+      legitimate_block_condition: "Real-Mode ohne Martin-Phronesis-Approval"
+  graceful_degradation_path: "Sandbox-Mock-Tenant-Dispatch (kein Real-Cross-Country-State-Mutation), Read-only-Jurisdiction-Mapping"
+
 acceptance_criteria:
   K11_cascade_containment:
     cascade_isolation: "hard"
