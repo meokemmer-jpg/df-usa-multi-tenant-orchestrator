@@ -1,0 +1,8 @@
+{
+  "df": "df-usa-multi-tenant-orchestrator",
+  "ts": "2026-06-05T17:22:19.601072+00:00",
+  "ok": true,
+  "bytes": 3110,
+  "model": "qwen2.5:14b-instruct",
+  "duration_s": 66.9
+}
