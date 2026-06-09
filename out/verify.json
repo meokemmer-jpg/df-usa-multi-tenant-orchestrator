@@ -1,0 +1,12 @@
+{
+  "df": "df-usa-multi-tenant-orchestrator",
+  "ts": "2026-06-08T19:56:17.037968+00:00",
+  "has_src": true,
+  "parse_ok": true,
+  "has_tests": true,
+  "test_ran": true,
+  "tests_passed": true,
+  "code_hash": "c7e159d8b9d08a71",
+  "python": "3.14.4",
+  "crux": "[CRUX-MK]"
+}
